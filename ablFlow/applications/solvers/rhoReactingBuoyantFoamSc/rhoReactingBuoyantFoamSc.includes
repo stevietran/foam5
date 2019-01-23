@@ -1,0 +1,14 @@
+$$(FOAM_SOLVERS)/combustion/reactingFoam
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/OpenFOAM/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/finiteVolume/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/meshTools/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/sampling/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/TurbulenceModels/turbulenceModels/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/TurbulenceModels/compressible/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/thermophysicalModels/specie/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/thermophysicalModels/reactionThermo/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/transportModels/compressible/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/thermophysicalModels/basic/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/thermophysicalModels/chemistryModel/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/ODE/lnInclude
+/home/stevie/OpenFOAM/OpenFOAM-5.x/src/combustionModels/lnInclude

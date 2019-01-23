@@ -1,0 +1,9 @@
+/* Atmospheric boundary layer BCs */
+atmThermalBoundaryLayer/atmThermalBoundaryLayer.C
+atmThermalBoundaryLayerInletVelocity/atmThermalBoundaryLayerInletVelocityFvPatchVectorField.C
+atmThermalBoundaryLayerInletTemperature/atmThermalBoundaryLayerInletTemperatureFvPatchScalarField.C
+atmThermalBoundaryLayerInletK/atmThermalBoundaryLayerInletKFvPatchScalarField.C
+atmThermalBoundaryLayerInletEpsilon/atmThermalBoundaryLayerInletEpsilonFvPatchScalarField.C
+
+
+LIB = $(FOAM_USER_LIBBIN)/libthermalAblBoundaryConditions

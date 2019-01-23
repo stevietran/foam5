@@ -1,0 +1,42 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      turbulenceProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "$FOAM_CASE/data/ablParams"
+//simulationType   laminar;
+simulationType   RAS;
+
+RAS
+{
+    RASModel        atmKEpsilon;
+    atmKEpsilonCoeffs
+    {
+        Cg              0.0;    // 1/Prt
+        //C3b             0;      // For default calculation of buoyancy coefficient
+        //C3b             3.4;    // For user-defined coeff
+        moLength        0;      // for neutral ABL
+        //moLength        15;     // for stable ABL
+        //kappa           4.1;
+        uStar           $frictionVel;  // for epsilon source term
+        //temStar         0.01;   // for epsilon stable source term
+    }
+
+    turbulence      on;
+    printCoeffs     on;
+}
+
+
+// ************************************************************************* //

@@ -1,0 +1,22 @@
+flowVelocity 5.700000E+00;
+refHeight 2.0;
+z0 2.000000E-04 ;
+
+yP100 0.00591 ;
+temGround 308.55000 ;
+frictionVel 2.537366E-01 ;
+topShear (1.237739E-02 0.000000E+00 0.000000E+00);
+vonKarman 0.41000 ;
+pressure 100000.00 ;
+turbulentKE 2.146075E-01 ;
+turbulentEpsilon 1.695484E-03 ;
+turbulentOmega 8.778218E-02 ;
+gasInletK 1.000000E-04 ;
+gasInletEps 1.000000E-06 ;
+gasInletOme 1.111111E-01 ;
+epsilonShear -1.593768E-05 ;
+omegaShear -8.251595E-04 ;
+sigmaEps 1.167361E+00 ;
+spillTime  79.00 ;
+spillRadius 1.60899E+01 ;
+volFlowRate 3.85860E+01 ;

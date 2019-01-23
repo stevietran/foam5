@@ -1,0 +1,13 @@
+groundHeatFlux -2.20 ;
+temGround 302.84 ;
+
+flowVelocity 1.80;
+refHeight 2.0;
+z0 2.000000E-05;
+
+pressure 94000.00 ;
+turbulentKE 3.286E-02 ;
+turbulentEpsilon 1.075E-03 ;
+spillRadius  15.12 ;
+spillTime 107.00 ;
+spillVelocity (0.09489   0.00   0.00);

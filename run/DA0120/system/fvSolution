@@ -1,0 +1,84 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "$FOAM_CASE/data/ablParams"
+
+solvers
+{
+    "rho.*"
+    {
+        solver          diagonal;
+    }
+
+    p_rgh
+    {
+        solver           GAMG;
+        tolerance        1e-7;
+        relTol           0.01;
+
+        smoother         DICGaussSeidel;
+
+    }
+
+    "(U|h|k|epsilon|omega)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0.1;
+    }
+
+    Yi
+    {
+        $h;
+    }
+}
+
+SIMPLE
+{
+    momentumPredictor yes;
+    nNonOrthogonalCorrectors 0;
+    pRefCell        0;
+    pRefValue       $pressure;
+
+    residualControl
+    {
+        p_rgh           1e-2;
+        U               1e-3;
+        h               1e-3;
+
+        // possibly check turbulence fields
+        "(k|epsilon|omega)" 1e-3;
+    }
+}
+
+relaxationFactors
+{
+    fields
+    {
+        rho             1.0;
+        p_rgh           0.7;
+    }
+    equations
+    {
+        U               0.2;
+        h               0.2;
+        "(k|epsilon|omega)" 0.5;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,132 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    "rho.*"
+    {
+        solver          diagonal;
+    }
+
+    p
+    {
+        solver           PCG;
+        preconditioner   DIC;
+        tolerance        1e-6;
+        relTol           0.1;
+    }
+
+    pFinal
+    {
+        $p;
+        tolerance        1e-6;
+        relTol           0.0;
+    }
+
+    p_rgh
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-8;
+        relTol          0.01;
+    }
+
+    p_rghFinal
+    {
+        $p_rgh;
+        relTol          0;
+    }
+    
+    "(U|h|k|epsilon|omega)"
+    {
+        solver          PBiCG;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0.1;
+    }
+
+    "(U|h|k|epsilon|omega)Final"
+    {
+        $U;
+        relTol          0;
+    }
+
+    Yi
+    {
+        $hFinal;
+    }
+}
+
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;
+    pRefCell        0;
+    pRefValue       0;
+
+    residualControl
+    {
+        p_rgh           1e-2;
+        U               1e-3;
+        h               1e-3;
+        G               1e-3;
+
+        // possibly check turbulence fields
+        "(k|epsilon|omega)" 1e-3;
+    }
+}
+
+relaxationFactors
+{
+    fields
+    {
+        rho             1.0;
+        p_rgh           0.7;
+    }
+    equations
+    {
+        U               0.2;
+        h               0.2;
+        "(k|epsilon|R)" 0.5;
+        G               0.7;
+    }
+}
+
+//PIMPLE
+//{
+//    momentumPredictor yes;
+//    nOuterCorrectors  50;
+//    nCorrectors     1;
+//    nNonOrthogonalCorrectors 0;
+//}
+//
+//relaxationFactors
+//{
+//    fields
+//    {
+//        rho             1.0;
+//        p_rgh           0.3;
+//        p_rghFinal      1;
+//    }
+//    equations
+//    {
+//        "(U|h|k|epsilon|omega)" 0.3;
+//        "(U|h|k|epsilon|omega)Final" 1;
+//    }
+//}
+
+
+// ************************************************************************* //

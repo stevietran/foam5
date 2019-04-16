@@ -19,17 +19,8 @@ simulationType RAS;
 
 RAS
 {
-    RASModel            atmKEpsilon;
-    atmKEpsilonCoeffs
-    {
-        Cg              1.0;
-        C3b               3;
-       moLength          $MOLength;
-        kappa           4.1;
-        uStar            $frictionVel;
-        temStar           $frictionTem;
+    RASModel            buoyantKEpsilon;
 
-    }
     turbulence          on;
 
     printCoeffs         on;

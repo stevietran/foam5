@@ -18,39 +18,38 @@ dnl> <STANDARD DEFINTIONS>
 dnl>
 changecom(//)changequote([,]) dnl>
 define(calc, [esyscmd(perl -e 'print ($1)')]) dnl>
-define(VCOUNT, 0)  dnl>
+define(VCOUNT, 0) dnl>
 define(vlabel, [[// ]pt VCOUNT ($1) define($1, VCOUNT)define([VCOUNT], incr(VCOUNT))])  dnl>
 dnl>
 define(hex2D, hex ($1b $2b $3b $4b $1t $2t $3t $4t)) dnl>
-define(quad2D, ($1b $2b $2t $1t))dnl>
-define(frontQuad, ($1t $2t $3t $4t))dnl>
-define(backQuad, ($1b $4b $3b $2b))dnl>
+define(quad2D, ($1b $2b $2t $1t)) dnl>
+define(frontQuad, ($1t $2t $3t $4t)) dnl>
+define(backQuad, ($1b $4b $3b $2b)) dnl>
 dnl>
-define(d,30) dnl>
-define(AR,10) dnl>
+define(d,300) dnl>
+define(h,30) dnl>
+define(cellSize,calc(d/300)) dnl>
+define(AR,20)dnl>
+define(cellRatio, 1.1) dnl>
 dnl>
-define(x0,0.)dnl>
-define(x3,calc(d*10.))dnl>
+define(x0,0.) dnl>
+define(x3,d) dnl>
 dnl>
-define(y0, 0.0)dnl>
-define(y2, d)dnl>
+define(y0,0.0) dnl>
+define(y2,10) dnl>
 dnl>
-define(z0, 0.0)dnl>
-define(z1,calc(d*1.0)) dnl>
+define(z0,0.0) dnl>
+define(z1,h) dnl>
 dnl>
-define(nCell, calc(d/30)) dnl>
+define(nAxial,calc(int((int(x3)-int(x0))/cellSize))) dnl>
+define(AxialGrade,1) dnl>
 dnl>
-define(nAxial, calc(int((int(x3)-int(x0))/nCell))) dnl>
-define(AxialGrade, 1) dnl>
+define(nRad,1) dnl>
+define(RadGrade,1) dnl>
 dnl>
-define(nRad, 1) dnl>
-define(RadGrade, 1) dnl>
-dnl>
-define(nCellHigh,calc(nCell/AR)) dnl>
-define(cellRatio, 1.075)
-define(nHigh, calc(int(log((cellRatio-1)*(z1-z0)/nCellHigh+1)/log(cellRatio)))) dnl>
-define(highGrade,calc(cellRatio**(nHigh-1)))
-dnl>
+define(nCellHigh,calc(cellSize/AR)) dnl>
+define(nHigh,calc(int(log((cellRatio-1)*(z1-z0)/nCellHigh+1)/log(cellRatio)))) dnl>
+define(highGrade,calc(cellRatio**(nHigh-1))) dnl>
 
 convertToMeters 1;
 vertices
@@ -69,8 +68,8 @@ vertices
 blocks
 (
     // Front block
-    hex2D(a1, a4, c4, c1) 
-    ( nAxial nRad nHigh )  
+    hex2D(a1, a4, c4, c1)
+    ( nAxial nRad nHigh )
     simpleGrading
     (
         1
@@ -124,7 +123,7 @@ boundary
         (
             backQuad(a4, a1, c1, c4)
 	    );
-    }        
+    }
     top
     {
         type patch;
@@ -132,7 +131,7 @@ boundary
         (
             frontQuad(a1, a4, c4, c1)
 	    );
-    }        
+    }
 );
 
 mergePatchPairs

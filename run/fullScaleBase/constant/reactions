@@ -1,9 +1,0 @@
-species
-(
-    air
-    CH4
-);
-
-reactions
-{
-}

@@ -15,12 +15,12 @@ Height 30;
 frontLength 0;
 midLength 150;
 backLength 300;
-Width 15;
+Width 5;
 
 fields
 (
     U
-    mag(U) 
+    mag(U)
     k
     epsilon
     nut

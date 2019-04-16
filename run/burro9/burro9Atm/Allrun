@@ -22,6 +22,5 @@ runApplication $(getApplication)
 #runParallel $(getApplication)
 
 # postProcess
-#postProcess -func 'mag(U)' -latestTime
-#postProcess -func 'sampleDict' -latestTime
-
+postProcess -func 'mag(U)' -latestTime
+postProcess -func 'sampleDict' -latestTime

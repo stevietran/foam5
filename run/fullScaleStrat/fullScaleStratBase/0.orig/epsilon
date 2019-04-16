@@ -23,16 +23,27 @@ internalField   uniform $turbulentEpsilon;
 
 boundaryField
 {
+  frontField
+  {
+      type            atmBoundaryLayerInletEpsilon;
+      flowDir         (1 0 0);
+      zDir            (0 0 1);
+      Uref            $flowVelocity;
+      Zref            $refHeight;
+      z0              uniform $z0;
+      zGround         uniform 0.0;
+  }
+  /*
     frontField
-    { 
+    {
         type            fixedProfile;
         profile         csvFile;
         profileCoeffs
         {
             nHeaderLine         0;
-            refColumn           0;  
-            componentColumns    (1); 
-            mergeSeparators     no;         
+            refColumn           0;
+            componentColumns    (1);
+            mergeSeparators     no;
             file                "$FOAM_CASE/data/Eps.csv";
             outOfBounds         clamp;
             interpolationScheme linear;
@@ -40,6 +51,7 @@ boundaryField
         direction        (0 0 1);
         origin           0;
     }
+    */
     backField
     {
         type            zeroGradient;

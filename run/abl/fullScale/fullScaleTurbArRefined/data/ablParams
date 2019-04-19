@@ -1,0 +1,16 @@
+flowVelocity 10;
+refHeight 6.0;
+z0 1.000000E-02;
+
+yP100 0.00234 ;
+temGround 298.15000 ;
+frictionVel 6.409325E-01 ;
+topShear (3.126500E-03 0.000000E+00 0.000000E+00);
+vonKarman 0.41000 ;
+pressure 100000.00 ;
+turbulentKE 1.369315E+00 ;
+turbulentEpsilon 2.732541E-03 ;
+turbulentOmega 2.217281E-02 ;
+epsilonShear -2.568698E-06 ;
+omegaShear -2.084333E-05 ;
+sigmaEps 1.167361E+00 ;

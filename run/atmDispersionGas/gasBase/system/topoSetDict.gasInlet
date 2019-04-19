@@ -1,0 +1,100 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+#include        "$FOAM_CASE/data/meshParams"
+
+actions
+(
+    // Create faceZone for patch ground
+    {
+        name    groundFaces;
+        type    faceSet;
+        action  new;
+        source  patchToFace;
+        sourceInfo
+        {
+            name    ground;
+        }
+    }
+    // Create faceSet of gasInlet
+    {
+        name    gasInletCells;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;
+        sourceInfo
+        {
+            p1     (0 0 0);
+            p2     (0 0 5);
+            radius  $radius;
+        }
+    }
+    {
+        name    gasInletFaces;
+        type    faceSet;
+        action  new;
+        source  cellToFace;
+        sourceInfo
+        {
+            set     gasInletCells;
+            option  all;
+        }
+    }
+    // Create groundSurfaceFaces
+    {
+        name    groundSurfaceFaces;
+        type    faceSet;
+        action  new;
+        source  faceToFace;
+        sourceInfo
+        {
+            set groundFaces;
+        }
+    }
+    {
+        name    groundSurfaceFaces;
+        type    faceSet;
+        action  delete;
+        source  faceToFace;
+        sourceInfo
+        {
+            set     gasInletFaces;
+        }
+    }
+    // Create gasInletPatchFaces
+    {
+        name    gasInletPatchFaces;
+        type    faceSet;
+        action  new;
+        source  faceToFace;
+        sourceInfo
+        {
+            set groundFaces;
+        }
+    }
+    {
+        name    gasInletPatchFaces;
+        type    faceSet;
+        action  delete;
+        source  faceToFace;
+        sourceInfo
+        {
+            set     groundSurfaceFaces;
+        }
+    }
+
+);
+
+// ************************************************************************* //

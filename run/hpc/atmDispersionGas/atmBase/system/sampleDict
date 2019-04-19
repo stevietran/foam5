@@ -1,0 +1,163 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes graph data for specified fields along a line, specified by start
+    and end points.
+
+\*---------------------------------------------------------------------------*/
+#include        "$FOAM_CASE/data/meshParams"
+
+fields
+(
+    U
+    mag(U)
+    k
+    epsilon
+    nut
+);
+
+setFormat raw;
+interpolationScheme cellPatchConstrained;//cellPoint;
+setConfig
+{
+    type    face; //uniform, midPoint, midPointAndFace
+    axis    z;          //distance// x, y, z, xyz
+}
+
+type            sets;
+libs            ("libsampling.so");
+writeControl    writeTime;
+sets
+(
+    frontFieldWidth
+    {
+        $setConfig;
+        start       ($frontLength $Width 0.0);
+        end         ($frontLength $Width $Height);
+    }
+    backFieldWidth
+    {
+        $setConfig;
+        start       ($backLength $Width 0.0);
+        end         ($backLength $Width $Height);
+    }
+    midFieldWidth
+    {
+        $setConfig;
+        start       ($midLength $Width 0.0);
+        end         ($midLength $Width $Height);
+    }
+    midField2Width
+    {
+        $setConfig;
+        start       ($midLength2 $Width 0.0);
+        end         ($midLength2 $Width $Height);
+    }
+
+    frontFieldWidth2
+    {
+        $setConfig;
+        start       ($frontLength $Width2 0.0);
+        end         ($frontLength $Width2 $Height);
+    }
+    backFieldWidth2
+    {
+        $setConfig;
+        start       ($backLength $Width2 0.0);
+        end         ($backLength $Width2 $Height);
+    }
+    midFieldWidth2
+    {
+        $setConfig;
+        start       ($midLength $Width2 0.0);
+        end         ($midLength $Width2 $Height);
+    }
+    midField2Width2
+    {
+        $setConfig;
+        start       ($midLength2 $Width2 0.0);
+        end         ($midLength2 $Width2 $Height);
+    }
+
+    frontFieldWidth2
+    {
+        $setConfig;
+        start       ($frontLength $Width2 0.0);
+        end         ($frontLength $Width2 $Height);
+    }
+    backFieldWidth2
+    {
+        $setConfig;
+        start       ($backLength $Width2 0.0);
+        end         ($backLength $Width2 $Height);
+    }
+    midFieldWidth2
+    {
+        $setConfig;
+        start       ($midLength $Width2 0.0);
+        end         ($midLength $Width2 $Height);
+    }
+    midField2Width2
+    {
+        $setConfig;
+        start       ($midLength2 $Width2 0.0);
+        end         ($midLength2 $Width2 $Height);
+    }
+
+    frontFieldSide
+    {
+        $setConfig;
+        start       ($frontLength $side 0.0);
+        end         ($frontLength $side $Height);
+    }
+    backFieldSide
+    {
+        $setConfig;
+        start       ($backLength $side 0.0);
+        end         ($backLength $side $Height);
+    }
+    midFieldSide
+    {
+        $setConfig;
+        start       ($midLength $side 0.0);
+        end         ($midLength $side $Height);
+    }
+    midField2Side
+    {
+        $setConfig;
+        start       ($midLength2 $side 0.0);
+        end         ($midLength2 $side $Height);
+    }
+
+    frontFieldSymPlane
+    {
+        $setConfig;
+        start       ($frontLength $symPlane 0.0);
+        end         ($frontLength $symPlane $Height);
+    }
+    backFieldSymPlane
+    {
+        $setConfig;
+        start       ($backLength $symPlane 0.0);
+        end         ($backLength $symPlane $Height);
+    }
+    midFieldSymPlane
+    {
+        $setConfig;
+        start       ($midLength $symPlane 0.0);
+        end         ($midLength $symPlane $Height);
+    }
+    midField2SymPlane
+    {
+        $setConfig;
+        start       ($midLength2 $symPlane 0.0);
+        end         ($midLength2 $symPlane $Height);
+    }
+);
+
+// *********************************************************************** //

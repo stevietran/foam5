@@ -1,0 +1,40 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# remove old case
+./Allclean
+
+# create blockMeshDict
+m4 ./system/blockMeshDict.m4 > ./system/blockMeshDict
+runApplication blockMesh
+
+# refine mesh
+runApplication -s Refine topoSet -dict system/topoSetDict.cRefine
+runApplication -s Refine refineMesh  -overwrite -dict system/refineMeshDict
+
+# refine mesh 2
+runApplication -s Refine2 topoSet -dict system/topoSetDict.cRefine2
+runApplication -s Refine2 refineMesh -overwrite -dict system/refineMeshDict
+
+# create source inlet patch
+runApplication -s gasInlet topoSet -dict system/topoSetDict.gasInlet
+runApplication createPatch -overwrite
+
+# BCs
+rm -rf 0
+cp -rf 0.orig 0
+
+# initial inner fields
+runApplication mapFields ../atmBase -sourceTime latestTime -mapMethod mapNearest -targetRegion region0
+
+# decompose case
+runApplication decomposePar
+
+# run
+runParallel $(getApplication)
+
+# reconstruct case
+runApplication reconstructPar

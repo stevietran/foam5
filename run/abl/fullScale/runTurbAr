@@ -1,0 +1,14 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+# Run mesh 1
+cd fullScaleTurbAr
+./Allrun
+
+# Run mesh 2
+cd ../fullScaleTurbArRefined
+./Allrun
+
+# Run mesh 3
+cd ../fullScaleTurbArRefined2
+./Allrun

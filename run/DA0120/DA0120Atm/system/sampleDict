@@ -1,0 +1,61 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes graph data for specified fields along a line, specified by start
+    and end points.
+
+\*---------------------------------------------------------------------------*/
+
+Height 25;
+Length 800;
+midLength 400;
+Width 150;
+
+fields
+(
+    U
+    mag(U) 
+    T
+    k
+    epsilon
+);
+
+type            sets;
+libs            ("libsampling.so");
+writeControl    writeTime;
+setFormat raw;
+interpolationScheme cellPoint;
+sets
+(
+    frontField
+    {
+        type    uniform;   // midPoint, midPointAndFace
+        axis    distance;  // x, y, z, xyz
+        nPoints 100;
+        start       (0.0 $Width 0.0);
+        end         (0.0 $Width $Height);
+    }
+    backField
+    {
+        type    uniform;   // midPoint, midPointAndFace
+        axis    distance;  // x, y, z, xyz
+        nPoints 100;
+        start       ($Length $Width 0.0);
+        end         ($Length $Width $Height);
+    }
+    midField
+    {
+        type    uniform;   // midPoint, midPointAndFace
+        axis    distance;  // x, y, z, xyz
+        nPoints 100;
+        start       ($midLength $Width 0.0);
+        end         ($midLength $Width $Height);
+    }
+);
+
+// *********************************************************************** //

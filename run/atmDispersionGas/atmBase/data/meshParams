@@ -1,0 +1,22 @@
+d 30;
+radius 15; // d/2
+
+Height 30; // d
+frontLength -150; // -5*d
+midLength 300.1; // 30*d/3
+midLength2 600.1; // 30*d*2/3
+backLength 900; // 30*d
+symPlane 0;
+side 300;  // 10*d
+Width 100.1; // 10*d/3
+Width2 200.1; // 2*10*d/3
+
+refine1Front -50; // frontLength/3
+refine1Back 300; // backLength/3
+refine1Wide 100; // side/3
+refine1Height 10; // Height/3
+
+refine2Front -25; // refine1Front/2
+refine2Back 150; // refine1Back/2
+refine2Wide 50; // refine1Wide/2
+refine2Height 5; // refine1Height/2

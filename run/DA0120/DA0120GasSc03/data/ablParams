@@ -1,0 +1,17 @@
+yP100 0.02896 ;
+z0 1.000000E-04 ;
+temGround 298.15000 ;
+flowVelocity (5.400000E-01 0.00000 0.00000); 
+frictionVel 5.180299E-02 ;
+topShear (1.263488E-01 0.000000E+00 0.000000E+00); 
+vonKarman 0.41000 ;
+pressure 100000.00 ;
+turbulentKE 8.945166E-03 ;
+turbulentEpsilon 6.883134E-04 ;
+turbulentOmega 8.549787E-01 ;
+epsilonShear -3.390632E-04 ;
+omegaShear -4.211625E-01 ;
+sigmaEps 1.167361E+00 ;
+spillTime 10000.00 ;
+spillRadius 3.50000E-02 ;
+volFlowRate 2.77679E-05 ; 
